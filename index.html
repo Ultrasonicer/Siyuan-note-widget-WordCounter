@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Counter</title>
+    <style type="text/css">
+
+        @import"./index.css";
+    
+    </style>
+</head>
+
+<body>
+    <h1>Counter</h1>
+    <table>
+        <tr>
+            <td id="page_number_head">总页数</td>
+            <td><div id="page_number"></div></td>
+        </tr>
+        <tr>
+            <td id="block_number_head">总段落数</td>
+            <td><div id="block_number"></div></td>
+        </tr>
+        <tr>
+            <td id="character_number_head">总字数</td>
+            <td><div id="character_number"></div></td>
+        </tr>
+        <tr>
+            <td id="present_block_number_head">当前文档下总段落数</td>
+            <td><div id="present_block_number"></div></td>
+        </tr>
+        <tr>
+            <td id="present_character_number_head">当前文档下总字数</td>
+            <td><div id="present_character_number"></div></td>
+        </tr>
+    </table>
+    <button id="get_data">
+        查询统计数据
+    </button>
+    <script src="script/count.js" type="module"></script>
+    <body>
+
+</html>
