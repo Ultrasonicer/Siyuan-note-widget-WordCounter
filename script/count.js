@@ -3,6 +3,7 @@ import { getBlockByID } from './api.js';
 
 var flag = 0;
 var auto_counter;
+
 // 绑定事件
 document.getElementById('manual_get_data').addEventListener('click', function () {
 	document.getElementById('manual_get_data').innerHTML = '查询中';
@@ -26,21 +27,19 @@ document.getElementById('auto_get_data').addEventListener('click', function () {
 document.getElementById('auto_get_data_realtime').addEventListener('click', function () {
 	if (flag == 0) {
 		flag = 1;
-		if(window.parent.siyuan.ws.ws){
-			window.parent.siyuan.ws.ws.addEventListener(
-			  'message',msg=>{
-				console.log(msg)
-			  let msgdata = msg.data
-			  count(msgdata)
-			  }
-			)
-		  }		
-		  document.getElementById('auto_get_data_realtime').innerHTML = '关闭自动查询';
+		if (window.parent.siyuan.ws.ws) {
+			window.parent.siyuan.ws.ws.addEventListener('message', (msg) => {
+				console.log(msg);
+				let msgdata = msg.data;
+				count(msgdata);
+			});
+		}
+		document.getElementById('auto_get_data_realtime').innerHTML = '关闭自动查询';
 		// console.log(flag);
 	} else if (flag == 1) {
 		flag = 0;
-		if(window.parent.siyuan.ws.ws){
-			window.parent.siyuan.ws.ws.removeEventListener( 'message',count)
+		if (window.parent.siyuan.ws.ws) {
+			window.parent.siyuan.ws.ws.removeEventListener('message', count);
 		}
 		document.getElementById('auto_get_data_realtime').innerHTML = '开启自动查询(全自动)';
 		// console.log(flag);
@@ -134,6 +133,3 @@ async function count_today_character() {
 	const res = await sql(sql_sentence);
 	return res;
 }
- 
- 
-  
