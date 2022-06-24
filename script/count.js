@@ -1,12 +1,32 @@
 import { sql } from './api.js';
 import { getBlockByID } from './api.js';
 
-// // 绑定事件
-// document.getElementById('get_data').addEventListener('click', function () {
-// 	count();
-// });
+var flag = 0;
+var auto_counter;
+// 绑定事件
+document.getElementById('manual_get_data').addEventListener('click', function () {
+	document.getElementById('manual_get_data').innerHTML = '查询中';
+	count();
+	document.getElementById('manual_get_data').innerHTML = '手动查询统计数据';
+});
 
-setInterval(function count() {
+document.getElementById('auto_get_data').addEventListener('click', function () {
+	if (flag == 0) {
+		flag = 1;
+		auto_counter = setInterval(count, 1000);
+		document.getElementById('auto_get_data').innerHTML = '关闭自动查询';
+		// console.log(flag);
+	} else if (flag == 1) {
+		flag = 0;
+		clearInterval(auto_counter);
+		document.getElementById('auto_get_data').innerHTML = '开启自动查询(间隔5s)';
+		// console.log(flag);
+	}
+});
+
+count();
+
+function count() {
 	// 统计页面数量
 	var page_data = count_pages().then((res) => {
 		var resLength = res.length;
@@ -46,7 +66,7 @@ setInterval(function count() {
 		}
 		document.getElementById('today_character_number').innerHTML = count_character;
 	});
-}, 2000);
+}
 
 async function count_pages() {
 	var sql_sentence = 'select * from blocks where type = "d"';
