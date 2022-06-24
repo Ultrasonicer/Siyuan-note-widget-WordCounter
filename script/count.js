@@ -1,8 +1,12 @@
 import { sql } from './api.js';
 import { getBlockByID } from './api.js';
 
-// 绑定事件
-document.getElementById('get_data').addEventListener('click', function () {
+// // 绑定事件
+// document.getElementById('get_data').addEventListener('click', function () {
+// 	count();
+// });
+
+setInterval(function count() {
 	// 统计页面数量
 	var page_data = count_pages().then((res) => {
 		var resLength = res.length;
@@ -42,7 +46,7 @@ document.getElementById('get_data').addEventListener('click', function () {
 		}
 		document.getElementById('today_character_number').innerHTML = count_character;
 	});
-});
+}, 2000);
 
 async function count_pages() {
 	var sql_sentence = 'select * from blocks where type = "d"';
@@ -82,7 +86,7 @@ async function count_today_character() {
 	}
 	// console.log(day);
 	var today_string = year + '' + month + '' + day + '';
-	console.log(today_string);
+	// console.log(today_string);
 	var sql_sentence = "select * from blocks where type = 'p' and updated like '%" + today_string + "%'";
 	const res = await sql(sql_sentence);
 	return res;
