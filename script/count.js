@@ -90,13 +90,16 @@ function count() {
 	});
 }
 
+// 统计页面数量
 async function count_pages() {
-	var sql_sentence = 'select * from blocks where type = "d"';
+	var sql_sentence = 'select * from blocks where type = "d" limit 999999999';
 	const res = await sql(sql_sentence);
 	return res;
 }
+
+// 统计块数量和总字数
 async function count_blocks() {
-	var sql_sentence = 'select * from blocks where type = "p"';
+	var sql_sentence = 'select * from blocks where type = "p" limit 999999999';
 	const res = await sql(sql_sentence);
 	return res;
 }
