@@ -1,6 +1,27 @@
 {
-	"name": "WordCounter",
-	"author": "weihanChen",
-	"url": "https://github.com/weihan-Chen",
-	"version": "0.0.6.20220625"
+  "name": "Wordcounter",
+  "author": "William Chan",
+  "url": "https://github.com/Ultrasonicer/WordCounter",
+  "version": "0.0.7",
+  "minAppVersion": "2.8.8",
+  "displayName": {
+    "default": "Wordcounter",
+    "zh_CN": "字数统计"
+  },
+  "description": {
+    "default": "This is a simple word counter widget.",
+    "zh_CN": "这是一个简单的字数统计挂件"
+  },
+  "readme": {
+    "default": "README.md",
+    "zh_CN": "README_zh_CN.md"
+  },
+  "funding": {
+    "openCollective": "",
+    "patreon": "",
+    "github": "",
+    "custom": [
+      "https://ld246.com/sponsor"
+    ]
+  }
 }
