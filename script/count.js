@@ -49,7 +49,7 @@ document.getElementById('auto_get_data_realtime').addEventListener('click', func
 count();
 
 function count() {
-	// 统计页面数量
+	// 统计文档数量
 	var page_data = count_pages().then((res) => {
 		var resLength = res.length;
 		document.getElementById('page_number').innerHTML = resLength;
@@ -90,46 +90,37 @@ function count() {
 	});
 }
 
+// 统计文档数量
 async function count_pages() {
 	var sql_sentence = 'select * from blocks where type = "d" limit 999999999';
 	const res = await sql(sql_sentence);
 	return res;
 }
+
+// 统计块数量和总字数
 async function count_blocks() {
 	var sql_sentence = 'select * from blocks where type = "p" limit 999999999';
 	const res = await sql(sql_sentence);
 	return res;
 }
 
+// 统计当前块数量和字数
 async function count_present_blocks() {
-	//var selfId = window.frameElement.parentElement.parentElement.getAttribute('data-node-id');
-	var self = window.frameElement.parentElement.parentElement;
+	const self = window.frameElement.parentElement.parentElement;
 	const self_id = await getBlockByID(self.getAttribute('data-node-id'));
-	var page_id = self_id.root_id;
-	// console.log(page_id);
-	var sql_sentence = "select * from blocks where type = 'p' and (root_id = '" + page_id + "'" + " or path like '%" + page_id + "%') limit 999999999";
+	const sql_sentence = `select * from blocks where type = 'p' and (root_id = '${self_id.root_id}' or path like '%${self_id.root_id}%') limit 999999999`;
 	const res = await sql(sql_sentence);
 	return res;
-}
+  }
 
 // 统计今日字数
 async function count_today_character() {
-	var today = new Date();
-	var year = today.getFullYear();
-	// console.log(year);
-	var month = today.getMonth() + 1;
-	if (month < 10) {
-		month = '0' + month;
-	}
-	// console.log(month);
-	var day = today.getDate();
-	if (day < 10) {
-		day = '0' + day;
-	}
-	// console.log(day);
-	var today_string = year + '' + month + '' + day + '';
-	// console.log(today_string);
-	var sql_sentence = "select * from blocks where type = 'p' and updated like '%" + today_string + "%'";
-	const res = await sql(sql_sentence);
+	const today = new Date();
+	const year = today.getFullYear();
+	const month = String(today.getMonth() + 1).padStart(2, '0');
+	const day = String(today.getDate()).padStart(2, '0');
+	const todayString = `${year}${month}${day}`;
+	const sqlSentence = `select * from blocks where type = 'p' and updated like '%${todayString}%'`;
+	const res = await sql(sqlSentence);
 	return res;
-}
+  }
