@@ -1,12 +1,13 @@
-@media (prefers-color-scheme: dark) {
-	.body {
-		background-color: #1e1e1e;
-		color: rgba(255, 255, 255);
-	}
+/* 明亮模式 */
+body {
+    background-color: white;
+    color: black;
 }
-@media (prefers-color-scheme: light) {
-	.body {
-		background-color: #d7d7d7;
-		color: rgb(49, 49, 49);
-	}
+
+/* 暗黑模式 */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: black;
+        color: white;
+    }
 }
